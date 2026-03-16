@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '@campusexchange/models';
+import { User } from '@shared/models';
 
 @Injectable()
 export class AppService {
   getData(): User {
-    return { id: 1, name: 'John Doe', email: 'john.doe@example.com' };
+    return {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john.doe@example.com',
+    };
   }
 }

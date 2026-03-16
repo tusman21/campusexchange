@@ -14,7 +14,7 @@ export class App {
 
   protected readonly appService = inject(AppService);
   protected readonly userResource = this.appService.userResource;
-  protected readonly user = this.userResource.value;
+  protected readonly users = this.userResource.value;
   protected readonly isLoading = this.userResource.isLoading;
   protected readonly error = this.userResource.error;
 

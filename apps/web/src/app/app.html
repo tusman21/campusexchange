@@ -11,13 +11,10 @@
   @if (error(); as err) {
     <div class="error">Error loading user: {{ err?.message || err }}</div>
   }
-  @if (user(); as currentUser) {
-    <p><strong>ID:</strong> {{ currentUser.id }}</p>
-    <p><strong>Name:</strong> {{ currentUser.name }}</p>
-    <p><strong>Email:</strong> {{ currentUser.email }}</p>
-  }
-  @if (!isLoading() && !error() && !user()) {
-    <div class="empty code">No user data available yet.</div>
+  @for (user of users(); track user.id) {
+    <p><strong>ID:</strong> {{ user.id }}</p>
+    <p><strong>Name:</strong> {{ user.firstName }} {{ user.lastName }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
   }
 </section>
 
