@@ -1,0 +1,24 @@
+<app-nx-welcome></app-nx-welcome>
+
+<section class="user-panel">
+  <h2>Current user (from AppService.userResource)</h2>
+
+  <button (click)="refreshUser()" [disabled]="isLoading()">Refresh user</button>
+
+  @if (isLoading()) {
+    <div class="loading">Loading user …</div>
+  }
+  @if (error(); as err) {
+    <div class="error">Error loading user: {{ err?.message || err }}</div>
+  }
+  @if (user(); as currentUser) {
+    <p><strong>ID:</strong> {{ currentUser.id }}</p>
+    <p><strong>Name:</strong> {{ currentUser.name }}</p>
+    <p><strong>Email:</strong> {{ currentUser.email }}</p>
+  }
+  @if (!isLoading() && !error() && !user()) {
+    <div class="empty code">No user data available yet.</div>
+  }
+</section>
+
+<router-outlet></router-outlet>
