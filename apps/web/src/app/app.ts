@@ -1,31 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
-import { AppService } from './app.service';
+import { NavigationService } from './services/navigation.service';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule],
   selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+  template: ` <router-outlet></router-outlet> `,
 })
 export class App {
-  protected title = 'web';
-
-  protected readonly appService = inject(AppService);
-  protected readonly userResource = this.appService.userResource;
-  protected readonly users = this.userResource.value;
-  protected readonly isLoading = this.userResource.isLoading;
-  protected readonly error = this.userResource.error;
-
-  constructor() {
-    // Kick off the initial fetch, if not already loaded.
-    if (!this.userResource.hasValue()) {
-      this.userResource.reload();
-    }
-  }
-
-  protected refreshUser(): void {
-    this.userResource.reload();
-  }
+  navigator = inject(NavigationService);
 }
